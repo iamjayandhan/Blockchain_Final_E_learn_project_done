@@ -154,3 +154,45 @@ body{
     }
   }
   
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+  }
+  
+  .modal-content h2 {
+    margin-top: 0;
+  }
+  
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .modal-content input {
+    margin-bottom: 10px;
+  }
+  
+  .modal-content button {
+    margin-top: 10px;
+  }
+  
