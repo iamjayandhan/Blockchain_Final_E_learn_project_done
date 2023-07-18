@@ -1,0 +1,156 @@
+
+body{
+    background-color: #d6cfdb;
+}
+.pt-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 40px;
+    background-color: #d6cfdb;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .pt-navbar-logo a {
+    text-decoration: none;
+    color: #131111;
+    background-color: #e9e6e8;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .pt-navbar-logo a:hover{
+    color: #62177b;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  
+  .pt-navbar-navs {
+    display: flex;
+    background-color: #F8F6F4;
+    width: 340px;
+    padding: 10px;
+    border-radius: 20px;
+    align-items: center;
+    margin-right: 40px;
+
+  }
+  
+  .pt-navbar-nav {
+    margin-left: 20px;
+    cursor: pointer;
+    background-color: #F8F6F4;
+    justify-content:space-evenly;
+  }
+  
+  .pt-navbar-nav a {
+    text-decoration: none;
+    color: #131111;
+    font-size: 18px;
+  }
+
+  .pt-navbar-nav a:hover {
+    color: #62177b;
+    padding: 6px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  
+  .pt-navbar-actions {
+    display: flex;
+  }
+  
+  .pt-navbar-actions button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    background-color: #F8F6F4;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+ 
+  .pt-navbar-toggle {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .pt-navbar-nav.-active {
+    display: block;
+  }
+  
+
+  
+  .pt-navbar-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: none;
+  }
+  
+  .pt-navbar-fill {
+    height: 100vh;
+    width: 240px;
+    background-color: #111;
+    position: fixed;
+    top: 0;
+    left: -240px;
+    z-index: 900;
+    display: none;
+  }
+  
+  .pt-navbar.-visible .pt-navbar-fill {
+    display: block;
+  }
+  
+  .pt-navbar.-visible {
+    transform: translateX(240px);
+  }
+  
+  @media (max-width: 750px) {
+    .pt-navbar-navs {
+      display: none;
+    }
+  
+    .pt-navbar-toggle {
+      display: block;
+    }
+  
+    .pt-navbar-actions {
+      display: none;
+    }
+  
+    .pt-navbar-nav.-active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 30px;
+      background-color: #111;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  
+    .pt-navbar.-visible {
+      transform: none;
+    }
+  
+    .pt-navbar-actions button {
+      margin-top: 10px;
+    }
+  }
+  

@@ -1,0 +1,130 @@
+/* Reset default margin and padding for the entire page */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Styles for the footer section */
+  .footer-container {
+    background-color: #343a40;
+    color: #fff;
+    padding: 40px 0;
+    margin-top: 50px;
+  }
+  
+  .footer-row {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin-right: 50px;
+    max-width: 20%;
+    
+  }
+  
+  .footer-heading {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .footer-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-item {
+    margin-bottom: 10px;
+  }
+  
+  .footer-link {
+    text-decoration: none;
+    color: #ccc;
+    transition: color 0.3s;
+  }
+  
+  .footer-link:hover {
+    color: #fff;
+  }
+  
+  .subscribe-form {
+    margin-top: 20px;
+  }
+  
+  .subscribe-text {
+    margin-bottom: 10px;
+    color: #ccc;
+    
+  }
+  
+  .subscribe-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+  }
+  .visually-hidden{
+      margin-right: 10px;
+  }
+  
+  .subscribe-input {
+    padding: 8px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
+  }
+  
+  .subscribe-button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .subscribe-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .footer-copy {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-top: 1px solid #555;
+    padding-top: 20px;
+  }
+  
+  .footer-copy p {
+    color: #ccc;
+  }
+  
+  .footer-social {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .footer-social li {
+    margin-right: 10px;
+  }
+  
+  .footer-social-link {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+  
+  .footer-social-link:hover {
+    background-color: #0056b3;
+  }
+  
