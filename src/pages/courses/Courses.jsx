@@ -139,7 +139,24 @@ function Card({ card }) {
 
 function Courses({contract,account}) {
 
+  const [admin,setAdmin] = useState("");
 
+  const checkingAdmin = async () => {
+    console.log("checking");
+    const res = await contract.methods.checkAdmin().call({from : account});
+    console.log("REsult : ",res);
+    if(res){
+      setAdmin("admin");
+    }
+    else{
+      setAdmin("");
+    }
+  }
+
+  useEffect(() => {
+    checkingAdmin();
+  }, [contract],[account])
+  
 
   const [cardsData, setCardsData] = useState([    {
       id: 1,
@@ -267,7 +284,7 @@ function Courses({contract,account}) {
       {cardsData.map((card) => (
         <Card key={card.id} card={card} />
       ))}
-    {"admin"=="admin"?
+    {admin=="admin"?
        <div className='new-card-form'>
         <h2>Add a New Course</h2>
         <form onSubmit={addCardData}>
