@@ -1,13 +1,23 @@
 // Navbar.js
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './navBar.css';
 import LoginForm from '../Login/loginForm';
+import { Link } from 'react-router-dom'; // Import the Link component from React Router
 
 const Navbar = ({contract,account}) => {
+  console.log("NavBar:",account)
   const [isNavActive, setNavActive] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
-  const [User, setUser] = useState(["Unk"]);
+  const [user, setUser] = useState(["Unk"]);
+  // const [acc,setAcc] = useState("");
+  // const [cont,setCont] = useState("");
+
+  console.log("Navbar - Account:", account);
+  console.log("Navbar - Contract:", contract);
+ 
+
+
 
   const handleNavToggle = () => {
     setNavActive((prevNavActive) => !prevNavActive);
@@ -27,7 +37,7 @@ const Navbar = ({contract,account}) => {
     setLoginFormVisible(false);
   };
 
-  const profile = async () => {
+  async function profile(account,contract) {
     console.log("In p:",account)
     try {
       if (!contract) {
@@ -37,13 +47,23 @@ const Navbar = ({contract,account}) => {
       // const acc = await window.ethereum.request({ method: 'eth_requestAccounts' });
       // setAccount(acc[0]});
       const _userName = await contract.methods.displayUserProfile().call({from : account});
-      console.log("Enbna da");
+      console.log("Enbna da",_userName);
       setUser(_userName);
       console.log("UserName",_userName);
     } catch (error) {
       console.error('Error retrieving user profile:', error);
     }
   };
+
+
+  
+  useEffect(() => {
+    if (contract && account) {
+      profile(account,contract);
+    }
+  }, [contract, account]);
+
+  
 
 
   return (
@@ -53,29 +73,29 @@ const Navbar = ({contract,account}) => {
       </div>
       <div className={`pt-navbar-navs ${isNavActive ? '-active' : ''}`}>
         <div className="pt-navbar-nav">
-          <a href="/">
+        <Link to="/">
             <span>Home</span>
-          </a>
+          </Link>
         </div>
         <div className="pt-navbar-nav">
-          <a href="/courses">
+        <Link to="/courses">
             <span>Courses</span>
-          </a>
+          </Link>
         </div>
         <div className="pt-navbar-nav">
-          <a href="/about">
+        <Link to="/about">
             <span>About</span>
-          </a>
+          </Link>
         </div>
         <div className="pt-navbar-nav">
-          <a href="/contact">
+        <Link to="/contact">
             <span>Contact</span>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="pt-navbar-actions">
         <button onClick={handleSignInClick}>Sign In</button>
-        <button onClick={profile}>{User}</button>
+        <button>{user}</button>
       </div>
       <div className="pt-navbar-toggle" onClick={handleNavToggle}>
        

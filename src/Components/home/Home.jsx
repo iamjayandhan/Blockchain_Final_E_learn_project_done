@@ -5,19 +5,21 @@
 // import Trusted from "./Components/trusted/Trusted";
 // import Courses from "./pages/courses/Courses";
 
-import Contact from "../../pages/contact/Contact";
 import CarouselComponent from "../carousel/Carousel";
 import Footer from "../footer/Footer";
 import Logincards from "../loginCards/Logincards";
-import Navbar from "../navBar/NavBar";
 import Trusted from "../trusted/Trusted";
 import MetaMaskIntegration from "../Metamask";
+import Navbar from "../navBar/NavBar";
 
 
-function Home() {
+function Home({contract,account}) {
+  console.log("Home :",account)
+  const acc=account;
+  const cont=contract;
   return (
     <div className="App">
-      <MetaMaskIntegration/>
+      <Navbar  contract = {cont} account = {acc}/> 
     <CarouselComponent/>
     <Trusted />
     <Logincards/>

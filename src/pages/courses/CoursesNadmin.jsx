@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './courses.css';
 import Web3 from 'web3';
 import ReactDOM from 'react-dom';
-import Navbar from '../../Components/navBar/NavBar';
 import NavBarOther from '../../Components/navBar/NavBarOther';
-
 
 function VideoPage({ videoUrl }) {
   const videoRef = React.createRef();
@@ -100,6 +98,7 @@ function Card({ card }) {
 
   return (
     <>
+    <NavBarOther/>
     <div className='ctn'>
       <div className='flip-card' key={card.id}>
         <div className='flip-card-inner'>
@@ -137,10 +136,7 @@ function Card({ card }) {
   );
 }
 
-function Courses({contract,account}) {
-
-
-
+function CoursesNadmin() {
   const [cardsData, setCardsData] = useState([    {
       id: 1,
       imageSrc: 'https://leverageedu.com/blog/wp-content/uploads/2021/08/Best-Blockchain-Courses.png',
@@ -258,17 +254,15 @@ function Courses({contract,account}) {
     const { name, value } = e.target;
     setNewCardData({ ...newCardData, [name]: value });
   };
-// const admin="admin";
+
+
   return (
-    
-<>
-<Navbar contract={contract} account={account} />
     <div className='cardcontainer'>
       {cardsData.map((card) => (
         <Card key={card.id} card={card} />
       ))}
-    {"admin"=="admin"?
-       <div className='new-card-form'>
+      {/* Form to add a new card */}
+      <div className='new-card-form'>
         <h2>Add a New Course</h2>
         <form onSubmit={addCardData}>
           <input
@@ -315,10 +309,9 @@ function Courses({contract,account}) {
           />
           <button type='submit'>Add Card</button>
         </form>
-      </div> : <h1>Form unaku kedaiyathu</h1>}
+      </div>
     </div>
-    </>
   );
 }
 
-export default Courses;
+export default CoursesNadmin;

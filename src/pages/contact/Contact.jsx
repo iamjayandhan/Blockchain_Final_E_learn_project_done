@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './contact.css';
 import NavBarOther from '../../Components/navBar/NavBarOther';
-
+import Navbar from '../../Components/navBar/NavBar';
 const Input = ({ label, type, value, onChange }) => (
   <div className="form-group">
     <label htmlFor={label}>{label}:</label>
@@ -33,7 +33,7 @@ const Button = ({ type, disabled, children }) => (
   </button>
 );
 
-const Contact = () => {
+const Contact = ({contract,account}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -54,7 +54,7 @@ const Contact = () => {
 
   return (
     <>
-    <NavBarOther/>
+<Navbar contract={contract} account={account} />
     <div className="contact-container">
       <h1>Contact Us</h1>
       {!isSubmitted ? (

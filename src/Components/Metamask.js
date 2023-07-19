@@ -1,7 +1,9 @@
-import Web3 from "web3";
+ import Web3 from "web3";
 import {useState,useEffect} from "react";
 import LoginForm from "./Login/loginForm";
 import NavBar from  "./navBar/NavBar";
+import Home from "./home/Home";
+import Courses from "../pages/courses/Courses";
 
 const contractaddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
 const ABI = [
@@ -151,6 +153,8 @@ const handleCloseLoginForm = () => {
     <div>
         {/* <LoginForm contract = {contract} account = {account} onCloseForm={handleCloseLoginForm}/> */}
         <NavBar contract = {contract} account = {account}/>
+      {/* <Home  contract = {contract} account = {account}/>
+      <Courses  contract = {contract} account = {account}/> */}
 
     </div>
     )

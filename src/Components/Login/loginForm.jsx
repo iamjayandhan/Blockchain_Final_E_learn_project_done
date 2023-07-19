@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import "./loginForm.css"
+import { isAddress } from 'web3-validator';
+import CoursesNadmin from '../../pages/courses/CoursesNadmin';
+import Courses from '../../pages/courses/Courses';
+import Home from '../home/Home';
+import App from '../../App';
+import Navbar from '../navBar/NavBar';
 const LoginForm = ({ contract,account,onCloseForm}) => {
 
 
   const [userName,setUserName] = useState("");
+  const [isAdmin,setIsAdmin] = useState(false);
+
   const handleUsernameChange = (e) => {
     setUserName(e.target.value);
   };
@@ -21,11 +29,15 @@ const LoginForm = ({ contract,account,onCloseForm}) => {
         console.log('Contract not initialized.');
         return;
       }
-      const isAdmin = await contract.methods.checkAdmin().call({from : account});
+      const isAdmin_ = await contract.methods.checkAdmin().call({from : account});
       const verify = await contract.methods.Login().call({from : account});
       console.log("VErify : ",verify);
-      if(isAdmin){
-        alert("Admin Logged in ");
+      setIsAdmin(isAdmin_);
+      console.log("out:",isAdmin_)
+      if(isAdmin_){
+        console.log("prg : ",isAdmin_);
+        alert("Admin Logged in :",isAdmin);
+        
       }
       else{
         if(!verify){
@@ -50,12 +62,16 @@ const LoginForm = ({ contract,account,onCloseForm}) => {
     } catch (error) {
       console.error(error);
     }
-    setUserName('');
+    setUserName("");
+    // console.log("Admin",isAdmin);
     onCloseForm()
    
 
   };
+   console.log("outfun:",isAdmin);
+
   return (
+    <>
     <div className="modal">
       <div className="modal-content">
         <h2>Enter Your Username</h2>
@@ -69,8 +85,14 @@ const LoginForm = ({ contract,account,onCloseForm}) => {
           <button type="submit">Submit</button>
         </form>
       </div>
+
     </div>
+    <Navbar admin={isAdmin ? "admin" : ""} />
+
+    </>
   );
 };
 
 export default LoginForm;
+
+//        { isAdmin ? <CoursesNadmin/>:<h1>Nothing</h1>  }

@@ -2,7 +2,7 @@
 import React from 'react';
 import './about.css';
 import NavBarOther from '../../Components/navBar/NavBarOther';
-
+import Navbar from '../../Components/navBar/NavBar';
 const Slide = ({ imageUrl, title, description }) => {
   return (
     <div className="about">
@@ -17,7 +17,7 @@ const Slide = ({ imageUrl, title, description }) => {
   );
 };
 
-const About = () => {
+const About = ({contract,account}) => {
   const slidesData = [
     {
       imageUrl: 'https://media.istockphoto.com/id/532264056/vector/welcome-inscription-hand-drawn-lettering.jpg?s=612x612&w=0&k=20&c=uGYn7w7SsQaakbXj_OksXL-nejJvxQTmNMiJIrpq5lo=',
@@ -68,7 +68,7 @@ const About = () => {
 
   return (
     <>
-<NavBarOther/>
+<Navbar contract={contract} account={account} />
     <div className="about-container">
       {slidesData.map((slide, index) => (
         <Slide key={index} imageUrl={slide.imageUrl} title={slide.title} description={slide.description} />
