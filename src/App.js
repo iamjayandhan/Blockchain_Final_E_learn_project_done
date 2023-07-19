@@ -1,20 +1,15 @@
-import Footer from "./Components/footer/Footer";
-import CarouselComponent from "./Components/carousel/Carousel";
-import Logincards from "./Components/loginCards/Logincards";
-import NavBar from "./Components/navBar/NavBar";
-import Trusted from "./Components/trusted/Trusted";
+
 import Courses from "./pages/courses/Courses";
 import Contact from "./pages/contact/Contact";
 import About from "./pages/about/About";
 import Home from "./Components/home/Home";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CoursesNadmin from "./pages/courses/CoursesNadmin";
-import MetaMaskIntegration from "./Components/Metamask";
 import { useState,useEffect } from "react";
 
 import Web3 from "web3";
 
-  const contractaddress = "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0";
+  const contractaddress = "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6";
   const ABI = [
     {
       "anonymous": false,
