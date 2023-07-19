@@ -47,7 +47,7 @@
   }
   
   Button {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px 20px;
     font-size: 16px;
     background-color: #007bff;
