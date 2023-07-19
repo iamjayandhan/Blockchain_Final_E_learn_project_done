@@ -9,7 +9,7 @@ const Navbar = ({contract,account}) => {
   console.log("NavBar:",account)
   const [isNavActive, setNavActive] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
-  const [user, setUser] = useState(["Unk"]);
+  const [user, setUser] = useState(["Unknown"]);
   // const [acc,setAcc] = useState("");
   // const [cont,setCont] = useState("");
 
@@ -95,7 +95,7 @@ const Navbar = ({contract,account}) => {
       </div>
       <div className="pt-navbar-actions">
         <button onClick={handleSignInClick}>Sign In</button>
-        <button>{user}</button>
+        <button>Hello, {user==""? "Admin" : user}</button>
       </div>
       <div className="pt-navbar-toggle" onClick={handleNavToggle}>
        

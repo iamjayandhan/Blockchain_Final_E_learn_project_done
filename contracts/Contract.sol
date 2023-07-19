@@ -8,8 +8,24 @@ contract Contract {
         string userName;
     }
 
+    // Course structure
+    struct Courses{
+        uint id;
+        string imgsrc;
+        string title;
+        string descrip;
+        string videourl;
+        uint price;
+    }
+
     // Array to record all users address
     address[] usersAddress;
+
+    // Array to record all id of course
+    uint[] courseIds;
+
+    // Array to record all Courses
+    mapping(uint => Courses) courseRecord;
 
     // Mapping of address of user to user data
     mapping (address => Users) usersRecord;
@@ -73,5 +89,33 @@ contract Contract {
         else{
             return false;
         }
+    }
+
+    // Function to get and store course
+    function getCourse(uint _id,string memory _imgsrc,string memory _title,string memory _descrip,string memory _videourl,uint _price) external returns(string memory){
+        if(_id > 0 && bytes(courseRecord[_id].videourl).length == 0){
+            courseIds.push(_id);
+            courseRecord[_id].id = _id;
+            courseRecord[_id].imgsrc = _imgsrc;
+            courseRecord[_id].title = _title;
+            courseRecord[_id].descrip = _descrip;
+            courseRecord[_id].videourl = _videourl;
+            courseRecord[_id].price = _price;
+            return "Course Added";
+        }
+        else{
+            return "Cannot Add Course";
+        }
+    }
+
+    // Display All Courses
+    function displayCourses() external view returns(Courses[] memory){
+        uint courseLength = courseIds.length;
+        Courses[] memory course = new Courses[](courseLength);
+        for(uint i=0; i<courseLength; i++){
+            course[i] = courseRecord[courseIds[i]];
+        }
+
+        return course;
     }
 }
