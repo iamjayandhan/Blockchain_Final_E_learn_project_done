@@ -1,47 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import './courses.css';
 import Web3 from 'web3';
-import ReactDOM from 'react-dom';
 import Navbar from '../../Components/navBar/NavBar';
+import VideoModal from './VideoModal';
 
+// function VideoPage({ videoUrl }) {
+//   const videoRef = React.createRef();
 
-function VideoPage({ videoUrl }) {
-  const videoRef = React.createRef();
+//   const handleFullscreen = () => {
+//     if (videoRef.current) {
+//       videoRef.current.requestFullscreen();
+//     }
+//   };
 
-  const handleFullscreen = () => {
-    if (videoRef.current) {
-      videoRef.current.requestFullscreen();
-    }
-  };
-
-  return (
-    <div>
-      <video ref={videoRef} controls width='560' height='315'>
-        <source src={videoUrl} type='video/mp4' />
-        Your browser does not support the video tag.
-      </video>
-      <button onClick={handleFullscreen}>Fullscreen</button>
-      <h1>BlockChain</h1>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <video ref={videoRef} controls width='560' height='315'>
+//         <source src={videoUrl} type='video/mp4' />
+//         Your browser does not support the video tag.
+//       </video>
+//       <button onClick={handleFullscreen}>Fullscreen</button>
+//       <h1>BlockChain</h1>
+//     </div>
+//   );
+// }
 
 
 function Card({ card }) {
   const [address, setAddress] = useState('');
   const [web3, setWeb3] = useState(null);
   const [transactionComplete, setTransactionComplete] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+  function handleStartLearning() {
+    setShowModal(true);
+  }
+  function handleCloseModal() {
+    setShowModal(false);
+  }
 
   async function connectToMetaMask() {
-    // Request access to the MetaMask accounts
     await window.ethereum.request({ method: 'eth_requestAccounts' });
 
-    // Create a Web3 instance using the MetaMask provider
     const web3Instance = new Web3(window.ethereum);
     setWeb3(web3Instance);
-
-    // You can now use the web3 instance to interact with the blockchain
-    // For example, you can get the connected account:
     const accounts = await web3Instance.eth.getAccounts();
     const connectedAddress = accounts[0];
     setAddress(connectedAddress);
@@ -74,27 +75,6 @@ function Card({ card }) {
     } catch (error) {
       console.error('Error sending transaction:', error.message);
     }
-  }
-
-  function handleStartLearning() {
-    // Open a new window
-    const newWindow = window.open('', '_blank');
-  
-    // Create a new HTML document for the new window
-    const newDocument = newWindow.document;
-    const newRoot = newDocument.createElement('div');
-    newRoot.id = 'root'; // Ensure the root element has the correct ID
-    newDocument.body.appendChild(newRoot);
-  
-    // Render the VideoPage component inside the new window's root element
-    ReactDOM.render(<VideoPage videoUrl={card.videoUrl} />, newRoot);
-  
-    // Close the new window if the user navigates away from it
-    newWindow.onbeforeunload = () => newWindow.close();
-  }
-  function handleStartLearning() {
-    // Open the video URL in a new tab
-    window.open(card.videoUrl, '_blank');
   }
 
   return (
@@ -133,6 +113,8 @@ function Card({ card }) {
         </div>
       </div>
     </div>
+    {showModal && <VideoModal videoUrl={card.videourl} onClose={handleCloseModal} />}
+
     </>
   );
 }
@@ -155,6 +137,7 @@ function Courses({ contract, account }) {
     try {
       const courseData = await contract.methods.displayCourses().call({ from: account });
       setCourses(courseData);
+      console.log("courseData",courseData)
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
