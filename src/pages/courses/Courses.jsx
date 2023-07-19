@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './courses.css';
 import Web3 from 'web3';
 import ReactDOM from 'react-dom';
+import NavBarOther from '../../Components/navBar/NavBarOther';
 
 function VideoPage({ videoUrl }) {
   const videoRef = React.createRef();
@@ -58,7 +59,7 @@ function Card({ card }) {
     const valueInWei = web3.utils.toWei(valueInEther.toString(), 'ether');
     const transaction = {
       from: address,
-      to: '0x70997970C51812dc3A010C7d01b50e0d17dc79C8',
+      to: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
       value: valueInWei,
     };
 
@@ -96,6 +97,8 @@ function Card({ card }) {
   }
 
   return (
+    <>
+    <NavBarOther/>
     <div className='ctn'>
       <div className='flip-card' key={card.id}>
         <div className='flip-card-inner'>
@@ -129,6 +132,7 @@ function Card({ card }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

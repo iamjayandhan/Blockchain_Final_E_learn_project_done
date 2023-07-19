@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './contact.css';
+import NavBarOther from '../../Components/navBar/NavBarOther';
 
 const Input = ({ label, type, value, onChange }) => (
   <div className="form-group">
@@ -52,6 +53,8 @@ const Contact = () => {
   };
 
   return (
+    <>
+    <NavBarOther/>
     <div className="contact-container">
       <h1>Contact Us</h1>
       {!isSubmitted ? (
@@ -85,6 +88,7 @@ const Contact = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

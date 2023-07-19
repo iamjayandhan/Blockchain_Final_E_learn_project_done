@@ -1,6 +1,7 @@
 // About.jsx
 import React from 'react';
 import './about.css';
+import NavBarOther from '../../Components/navBar/NavBarOther';
 
 const Slide = ({ imageUrl, title, description }) => {
   return (
@@ -66,11 +67,14 @@ const About = () => {
   ];
 
   return (
+    <>
+<NavBarOther/>
     <div className="about-container">
       {slidesData.map((slide, index) => (
         <Slide key={index} imageUrl={slide.imageUrl} title={slide.title} description={slide.description} />
       ))}
     </div>
+    </>
   );
 };
 

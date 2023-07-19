@@ -21,7 +21,7 @@ const CarouselComponent = () => {
   ];
 
   return (
-    <Carousel showArrows={true} infiniteLoop={true} autoPlay={true} interval={5000} showStatus={false}>
+    <Carousel showArrows={true} infiniteLoop={true} showThumbs={false} autoPlay={true} interval={5000} showStatus={false}>
       {slides.map((slide, index) => (
         <div key={index} className="carousel-slide">
           <a href={slide.link} target="_blank" rel="noopener noreferrer">

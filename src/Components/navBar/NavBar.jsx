@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import './navBar.css';
 import LoginForm from '../Login/loginForm';
 
-const Navbar = () => {
+const Navbar = ({contract,account}) => {
   const [isNavActive, setNavActive] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
+  const [User, setUser] = useState(["Unk"]);
 
   const handleNavToggle = () => {
     setNavActive((prevNavActive) => !prevNavActive);
@@ -24,6 +25,24 @@ const Navbar = () => {
 
   const handleCloseLoginForm = () => {
     setLoginFormVisible(false);
+  };
+
+  const profile = async () => {
+    console.log("In p:",account)
+    try {
+      if (!contract) {
+        console.log('Contract not initialized.');
+        return;
+      }
+      // const acc = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      // setAccount(acc[0]});
+      const _userName = await contract.methods.displayUserProfile().call({from : account});
+      console.log("Enbna da");
+      setUser(_userName);
+      console.log("UserName",_userName);
+    } catch (error) {
+      console.error('Error retrieving user profile:', error);
+    }
   };
 
 
@@ -56,13 +75,17 @@ const Navbar = () => {
       </div>
       <div className="pt-navbar-actions">
         <button onClick={handleSignInClick}>Sign In</button>
-        <button onClick={handleSignUpClick}>Sign Up</button>
+        <button onClick={profile}>{User}</button>
       </div>
       <div className="pt-navbar-toggle" onClick={handleNavToggle}>
        
       </div>
       <div className="pt-navbar-bg" onClick={handleNavToggle}></div>
-      {isLoginFormVisible && <LoginForm onClose={handleCloseLoginForm} />}
+      {isLoginFormVisible &&     <LoginForm
+          contract={contract}
+          account={account}
+          onCloseForm={handleCloseLoginForm} // Pass the function as a prop
+        />}
 
     </nav>
   );

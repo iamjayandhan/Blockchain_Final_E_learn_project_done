@@ -11,16 +11,16 @@ import Footer from "../footer/Footer";
 import Logincards from "../loginCards/Logincards";
 import Navbar from "../navBar/NavBar";
 import Trusted from "../trusted/Trusted";
+import MetaMaskIntegration from "../Metamask";
 
 
 function Home() {
   return (
     <div className="App">
-    <Navbar/>
+      <MetaMaskIntegration/>
     <CarouselComponent/>
     <Trusted />
     <Logincards/>
-    <Contact/>
     <Footer/>
     </div>
   );
