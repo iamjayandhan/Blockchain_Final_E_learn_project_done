@@ -1,6 +1,6 @@
 
 import Courses from "./pages/courses/Courses";
-import Contact from "./pages/contact/Contact";
+import Contact from "./pages/contact/ContactForm";
 import About from "./pages/about/About";
 import Home from "./Components/home/Home";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -9,8 +9,9 @@ import { useState,useEffect } from "react";
 
 import Web3 from "web3";
 import Navbar from "./Components/navBar/NavBar";
+import ContactForm from "./pages/contact/ContactForm";
 
-  const contractaddress = "0xe6e340d132b5f46d1e472debcd681b2abc16e57e";
+  const contractaddress = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
   const ABI =[
     {
       "anonymous": false,
@@ -312,7 +313,7 @@ console.log("APP -- contract",contract)
         <Route exact path="/" element={<Home contract={contract} account={account} />} />
         <Route path="/about" element={<About contract={contract} account={account} />} />
         <Route path="/courses" element={ <Courses contract={contract} account={account} />} />
-        <Route path="/contact" element={<Contact  contract={contract} account={account} />} />
+        <Route path="/contact" element={<ContactForm  contract={contract} account={account} />} />
       </Routes>
     </div>
   );

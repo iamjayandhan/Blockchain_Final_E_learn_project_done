@@ -98,6 +98,8 @@ function Logincards() {
   
 
   return (
+<>
+<h1><center>Trending Courses</center></h1>
 <div className='cardcontainer'>
       {cardsData.map((card) => (
         <div className="flip-card" key={card.id}>
@@ -113,18 +115,19 @@ function Logincards() {
             </div>
             <div className="flip-card-back">
               <div className="card">
-                <button className="btn btn-1" onClick={connectToMetaMask}>
+                {/* <button className="btn btn-1" onClick={connectToMetaMask}>
                   Connect to MetaMask
                 </button>
                 <button className="btn btn-2" onClick={() => transfer(card.price)}>
                   Buy @ {card.price} ETH
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
         </div>
       ))}
     </div>
+    </>
   );
 }
 

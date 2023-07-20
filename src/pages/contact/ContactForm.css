@@ -1,0 +1,74 @@
+/* Styles for ContactForm */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin-top: 150px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.success-message {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #34c240;
+  border-radius: 5px;
+  background-color: #e7f7e3;
+  color: #34c240;
+  font-size: 16px;
+  text-align: center;
+}
+
+.error-message {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+  background-color: #f8d7da;
+  color: #dc3545;
+  font-size: 16px;
+  text-align: center;
+}

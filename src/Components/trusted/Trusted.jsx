@@ -17,12 +17,12 @@ export default function Trusted() {
         </ul>
     <div class="hero bg-dark text-secondary px-4 py-5 text-center">
     <div class="py-5">
-      <h1 class="display-5 fw-bold text-white">E-Learning Platform</h1>
+      <h1 class="display-5 fw-bold text-white">Who Are We ?</h1>
       <div class="col-lg-6 mx-auto">
-        <p class="fs-5 mb-4">If you need to learn specific job skills, there are two online sites that we recommend. One is Udacity because it teaches highly specific, job-focused skills. If you are aiming to get a job from one of the companies that Udacity partners with, the Udacity courses could give you a leg up.</p>
+        <p class="fs-5 mb-4">Welcome to De-Learn ! We are at the forefront of education's evolution, embracing the future with the power of blockchain. Our decentralized platform offers unparalleled security, transparency, and accessibility, revolutionizing the way you learn. With blockchain technology, your achievements and credentials are securely stored, and smart contracts streamline processes for seamless interactions. Gain ownership of your accomplishments through verifiable certificates and connect with learners worldwide in our thriving community. Expert instructors ensure an immersive and interactive learning experience, empowering you to unlock your true potential. Embrace the future of education with us and embark on a journey that knows no boundaries. Join De-Lear now and transform the way you learn!</p>
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Login</button>
-          <button type="button" class="btn btn-outline-light btn-lg px-4">Register</button>
+          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"></button>
+          <button type="button" class="btn btn-outline-light btn-lg px-4"></button>
         </div>
       </div>
     </div>

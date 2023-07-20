@@ -62,7 +62,7 @@ const Navbar = ({ contract, account }) => {
   return (
     <nav className={`pt-navbar ${isNavActive ? '-visible' : ''}`}>
       <div className="pt-navbar-logo">
-      <a href="https://www.freepnglogos.com/pics/graduation-cap" title="Image from freepnglogos.com"><img src="https://www.freepnglogos.com/uploads/graduation-cap-png/graduation-cap-variant-education-icons-27.png" width="43px" alt="graduation cap variant education icons" />  E-Learning</a>      
+      <a href="https://www.freepnglogos.com/pics/graduation-cap" title="Image from freepnglogos.com"><img src="https://www.freepnglogos.com/uploads/graduation-cap-png/graduation-cap-variant-education-icons-27.png" width="43px" alt="graduation cap variant education icons" /> De-Learn </a>      
       </div>
       <div className={`pt-navbar-navs ${isNavActive ? '-active' : ''}`}>
         <div className="pt-navbar-nav">
