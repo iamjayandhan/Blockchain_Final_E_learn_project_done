@@ -112,7 +112,7 @@ function Card({ card ,contract,account,coursetransaction}) {
         </div>
       </div>
     </div>
-    {showModal && <VideoModal videoUrl={card.videoUrl} onClose={handleCloseModal} />}
+    {showModal && <VideoModal videourl={card.videourl} onClose={handleCloseModal} coursename={card.title} />}
 
     </>
   );
@@ -129,7 +129,7 @@ function Courses({ contract, account }) {
     title: '',
     descrip: '',
     price: '',
-    videoUrl: '',
+    videourl: '',
   });
 
 
@@ -153,7 +153,7 @@ function Courses({ contract, account }) {
           newCourse.imgsrc,
           newCourse.title,
           newCourse.descrip,
-          newCourse.videoUrl,
+          newCourse.videourl,
           newCourse.price
         )
         .send({ from: account });
@@ -211,7 +211,7 @@ function Courses({ contract, account }) {
                   title: newCardData.title,
                   descrip: newCardData.descrip,
                   price: newCardData.price,
-                  videoUrl: newCardData.videoUrl,
+                  videourl: newCardData.videourl,
                 };
                 addCourse(newCourse);
               }}
@@ -253,9 +253,9 @@ function Courses({ contract, account }) {
           />
           <input
             type='descrip'
-            name='videoUrl'
+            name='videourl'
             placeholder='Video URL'
-            value={newCardData.videoUrl}
+            value={newCardData.videourl}
             onChange={handleInputChange}
           />
           <button type='submit'>Add Card</button>

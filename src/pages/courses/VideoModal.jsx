@@ -1,6 +1,6 @@
 import './courses.css';
 
-function VideoModal({ videoUrl, onClose }) {
+function VideoModal({ videourl, onClose ,coursename}) {
     return (
       <div className="video-modal">
         <div className="video-modal-content">
@@ -10,11 +10,12 @@ function VideoModal({ videoUrl, onClose }) {
           <iframe
             width="560"
             height="315"
-            src={videoUrl}
+            src={videourl}
             title="YouTube Video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
+          <h1>{coursename}</h1>
         </div>
       </div>
     );

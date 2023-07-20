@@ -10,7 +10,7 @@ import { useState,useEffect } from "react";
 import Web3 from "web3";
 import Navbar from "./Components/navBar/NavBar";
 
-  const contractaddress = "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6";
+  const contractaddress = "0xe6e340d132b5f46d1e472debcd681b2abc16e57e";
   const ABI =[
     {
       "anonymous": false,
