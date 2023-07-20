@@ -15,7 +15,7 @@ function VideoModal({ videourl, onClose ,coursename}) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
-          <h1>{coursename}</h1>
+          <h2>{coursename}</h2>
         </div>
       </div>
     );

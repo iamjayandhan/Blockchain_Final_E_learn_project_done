@@ -1,69 +1,62 @@
-// Navbar.js
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import './navBar.css';
 import LoginForm from '../Login/loginForm';
-import { Link } from 'react-router-dom'; // Import the Link component from React Router
+import { Link } from 'react-router-dom';
 
-const Navbar = ({contract,account}) => {
-  console.log("NavBar:",account)
+const Navbar = ({ contract, account }) => {
   const [isNavActive, setNavActive] = useState(false);
   const [isLoginFormVisible, setLoginFormVisible] = useState(false);
-  const [user, setUser] = useState(["Unknown"]);
-  // const [acc,setAcc] = useState("");
-  // const [cont,setCont] = useState("");
+  const [user, setUser] = useState('Unknown');
+  const [signinButton, setSigninButton] = useState('Register');
 
-  console.log("Navbar - Account:", account);
-  console.log("Navbar - Contract:", contract);
- 
-
-
-
-  const handleNavToggle = () => {
+  const handleNavToggle = useCallback(() => {
     setNavActive((prevNavActive) => !prevNavActive);
-  };
+  }, []);
 
- 
-
-  const handleSignInClick = () => {
+  const handleSignInClick = useCallback(() => {
     setLoginFormVisible(true);
-  };
 
-  const handleSignUpClick = () => {
-    setLoginFormVisible(true);
-  };
+  }, []);
 
-  const handleCloseLoginForm = () => {
+  const handleCloseLoginForm = useCallback(() => {
     setLoginFormVisible(false);
-  };
+  }, []);
 
-  async function profile(account,contract) {
-    console.log("In p:",account)
+  const profile = useCallback(async () => {
     try {
       if (!contract) {
         console.log('Contract not initialized.');
         return;
       }
-      // const acc = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      // setAccount(acc[0]});
-      const _userName = await contract.methods.displayUserProfile().call({from : account});
-      console.log("Enbna da",_userName);
-      setUser(_userName);
-      console.log("UserName",_userName);
+
+      const _userName = await contract.methods.displayUserProfile().call({ from: account });
+      const isAdmin_ = await contract.methods.checkAdmin().call({ from: account });
+      const verify = await contract.methods.Login().call({ from: account });
+
+      if (verify) {
+        setSigninButton('Log In');
+      } else {
+        setSigninButton('Register');
+        setUser("Unknown");
+      }
+
+      if (isAdmin_) {
+        setSigninButton('Admin LoggedIn');
+        setUser('admin');
+      } else if (_userName) {
+        setSigninButton('LoggedIn');
+        setUser(_userName);
+      }
     } catch (error) {
       console.error('Error retrieving user profile:', error);
     }
-  };
-
-
-  
-  useEffect(() => {
-    if (contract && account) {
-      profile(account,contract);
-    }
   }, [contract, account]);
 
-  
+  useEffect(() => {
+    if (contract && account) {
+      profile();
+    }
+  }, [contract, account, profile]);
 
 
   return (
@@ -94,11 +87,10 @@ const Navbar = ({contract,account}) => {
         </div>
       </div>
       <div className="pt-navbar-actions">
-        <button onClick={handleSignInClick}>Sign In</button>
-        <button>Hello, {user==""? "Unknown" : user}</button>
+        <button onClick={handleSignInClick}>{signinButton}</button>
+        <button>Hello, {user}</button>  
       </div>
       <div className="pt-navbar-toggle" onClick={handleNavToggle}>
-       
       </div>
       <div className="pt-navbar-bg" onClick={handleNavToggle}></div>
       {isLoginFormVisible &&     <LoginForm
