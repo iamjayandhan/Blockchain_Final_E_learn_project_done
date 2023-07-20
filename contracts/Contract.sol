@@ -55,7 +55,17 @@ contract Contract {
         return usersRecord[msg.sender].userName;
     }
     
+     mapping(address => mapping(uint256 => bool)) public userCourses;
 
+    // Add the function to mark a course as purchased for a user
+    function addPurchasedCourse(uint256 courseId) public {
+        userCourses[msg.sender][courseId] = true;
+    }
+
+    // Add a function to check if a course has been purchased by a user
+    function hasPurchasedCourse(address user, uint256 courseId) public view returns (bool) {
+        return userCourses[user][courseId];
+    }
     // // Display Added Users
     // function displayAllUsers() external view returns (address[] memory, string[] memory) {
     //     require(msg.sender == provider,"Only Provider can access this feature");

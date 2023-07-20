@@ -4,33 +4,30 @@ import Web3 from 'web3';
 import Navbar from '../../Components/navBar/NavBar';
 import VideoModal from './VideoModal';
 
-// function VideoPage({ videoUrl }) {
-//   const videoRef = React.createRef();
 
-//   const handleFullscreen = () => {
-//     if (videoRef.current) {
-//       videoRef.current.requestFullscreen();
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <video ref={videoRef} controls width='560' height='315'>
-//         <source src={videoUrl} type='video/mp4' />
-//         Your browser does not support the video tag.
-//       </video>
-//       <button onClick={handleFullscreen}>Fullscreen</button>
-//       <h1>BlockChain</h1>
-//     </div>
-//   );
-// }
-
-
-function Card({ card }) {
+function Card({ card ,contract,account,coursetransaction}) {
   const [address, setAddress] = useState('');
   const [web3, setWeb3] = useState(null);
-  const [transactionComplete, setTransactionComplete] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+
+  const [coursetransactionComplete, setCourseTransactionComplete] = useState(false);
+
+  useEffect(() => {
+    async function fetchCourseStatus() {
+      try {
+        const hasPurchased = await contract.methods.hasPurchasedCourse(account, card.id).call({ from: account });
+        console.log("HI")
+        setCourseTransactionComplete(hasPurchased);
+      } catch (error) {
+        console.error('Error fetching course status:', error);
+      }
+    }
+
+    fetchCourseStatus();
+  }, [contract, account, card.id]);
+
+
+
   function handleStartLearning() {
     setShowModal(true);
   }
@@ -51,7 +48,7 @@ function Card({ card }) {
     // You can also send transactions using the web3 instance, for example:
   }
 
-  async function transfer(price) {
+  async function transfer(price, courseId) {
     if (!web3) {
       console.log('Web3 instance not available. Connect to Logincards first.');
       return;
@@ -70,8 +67,10 @@ function Card({ card }) {
       console.log('Transaction sent:', response);
       console.log('Done');
 
-      // Set transaction status to true after the transaction is complete
-      setTransactionComplete(true);
+    // After successful transaction, add the course to the contract for the user
+    await contract.methods.addPurchasedCourse(courseId).send({ from: account });
+    // Set transaction status to true after the transaction is complete
+    setCourseTransactionComplete(true);
     } catch (error) {
       console.error('Error sending transaction:', error.message);
     }
@@ -87,13 +86,13 @@ function Card({ card }) {
               <img className='card-img-top' src={card.imgsrc} alt='CardImage cap' />
               <div className='card-body'>
                 <h3 className='card-title'>{card.title}</h3>
-                <p className='card-text'>{card.descrip}</p>
+                <p className='card-descrip'>{card.descrip}</p>
               </div>
             </div>
           </div>
           <div className='flip-card-back'>
             <div className='card'>
-              {transactionComplete ? (
+              {coursetransactionComplete ? (
                 <button className='btn btn-3' onClick={handleStartLearning}>
                   Start learning
                 </button>
@@ -103,7 +102,7 @@ function Card({ card }) {
                     Connect to MetaMask
                   </button>
                   {console.log(card)}
-                  <button className='btn btn-2' onClick={() => transfer(card.price)}>
+                  <button className='btn btn-2' onClick={() => transfer(card.price,card.id)}>
                     Buy @ {parseInt(card.price)} ETH
                   </button>
                 </>
@@ -113,7 +112,7 @@ function Card({ card }) {
         </div>
       </div>
     </div>
-    {showModal && <VideoModal videoUrl={card.videourl} onClose={handleCloseModal} />}
+    {showModal && <VideoModal videoUrl={card.videoUrl} onClose={handleCloseModal} />}
 
     </>
   );
@@ -122,11 +121,13 @@ function Card({ card }) {
 function Courses({ contract, account }) {
   const [admin, setAdmin] = useState(false);
   const [courses, setCourses] = useState([]);
+  const [coursetransactionComplete, setTransactionComplete] = useState(false);
+
   const [newCardData, setNewCardData] = useState({
     id: '',
-    imageSrc: '',
+    imgsrc: '',
     title: '',
-    text: '',
+    descrip: '',
     price: '',
     videoUrl: '',
   });
@@ -149,9 +150,9 @@ function Courses({ contract, account }) {
       const response = await contract.methods
         .getCourse(
           newCourse.id,
-          newCourse.imageSrc,
+          newCourse.imgsrc,
           newCourse.title,
-          newCourse.text,
+          newCourse.descrip,
           newCourse.videoUrl,
           newCourse.price
         )
@@ -172,6 +173,7 @@ function Courses({ contract, account }) {
   };
 
   useEffect(() => {
+
     async function checkingAdmin() {
       try {
         const res = await contract.methods.checkAdmin().call({ from: account });
@@ -194,7 +196,7 @@ function Courses({ contract, account }) {
         {courses.map((course) => (
          
          <>{console.log(course)}
-          <Card key={course.id} contract={contract} account={account} card={course} />
+          <Card key={course.id} contract={contract} account={account} card={course} coursetransaction={coursetransactionComplete} />
           </>
         ))}
         {admin ? (
@@ -205,9 +207,9 @@ function Courses({ contract, account }) {
                 e.preventDefault();
                 const newCourse = {
                   id: parseInt(newCardData.id),
-                  imageSrc: newCardData.imageSrc,
+                  imgsrc: newCardData.imgsrc,
                   title: newCardData.title,
-                  text: newCardData.text,
+                  descrip: newCardData.descrip,
                   price: newCardData.price,
                   videoUrl: newCardData.videoUrl,
                 };
@@ -222,24 +224,24 @@ function Courses({ contract, account }) {
             onChange={handleInputChange}
           />
           <input
-            type='text'
-            name='imageSrc'
+            type='descrip'
+            name='imgsrc'
             placeholder='Image URL'
-            value={newCardData.imageSrc}
+            value={newCardData.imgsrc}
             onChange={handleInputChange}
           />
           <input
-            type='text'
+            type='descrip'
             name='title'
             placeholder='Title'
             value={newCardData.title}
             onChange={handleInputChange}
           />
           <input
-            type='text'
-            name='text'
-            placeholder='Text'
-            value={newCardData.text}
+            type='descrip'
+            name='descrip'
+            placeholder='descrip'
+            value={newCardData.descrip}
             onChange={handleInputChange}
           />
           <input
@@ -250,7 +252,7 @@ function Courses({ contract, account }) {
             onChange={handleInputChange}
           />
           <input
-            type='text'
+            type='descrip'
             name='videoUrl'
             placeholder='Video URL'
             value={newCardData.videoUrl}

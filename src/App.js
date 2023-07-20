@@ -8,9 +8,10 @@ import CoursesNadmin from "./pages/courses/CoursesNadmin";
 import { useState,useEffect } from "react";
 
 import Web3 from "web3";
+import Navbar from "./Components/navBar/NavBar";
 
   const contractaddress = "0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6";
-  const ABI = [
+  const ABI =[
     {
       "anonymous": false,
       "inputs": [
@@ -53,6 +54,19 @@ import Web3 from "web3";
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "courseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "addPurchasedCourse",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -173,6 +187,30 @@ import Web3 from "web3";
     {
       "inputs": [
         {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "courseId",
+          "type": "uint256"
+        }
+      ],
+      "name": "hasPurchasedCourse",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "string",
           "name": "userName",
           "type": "string"
@@ -187,6 +225,30 @@ import Web3 from "web3";
         }
       ],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userCourses",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     }
   ];
@@ -246,12 +308,10 @@ console.log("APP -- contract",contract)
   return (
     
     <div className="App">
-
       <Routes>
         <Route exact path="/" element={<Home contract={contract} account={account} />} />
         <Route path="/about" element={<About contract={contract} account={account} />} />
         <Route path="/courses" element={ <Courses contract={contract} account={account} />} />
-        <Route path="/coursesadmin" element={<CoursesNadmin /> } />
         <Route path="/contact" element={<Contact  contract={contract} account={account} />} />
       </Routes>
     </div>

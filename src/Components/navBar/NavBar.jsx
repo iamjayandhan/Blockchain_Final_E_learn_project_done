@@ -95,7 +95,7 @@ const Navbar = ({contract,account}) => {
       </div>
       <div className="pt-navbar-actions">
         <button onClick={handleSignInClick}>Sign In</button>
-        <button>Hello, {user==""? "Admin" : user}</button>
+        <button>Hello, {user==""? "Unknown" : user}</button>
       </div>
       <div className="pt-navbar-toggle" onClick={handleNavToggle}>
        
