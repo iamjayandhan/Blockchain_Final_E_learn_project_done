@@ -1,12 +1,49 @@
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    color: #999;
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.297));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
-  
+.modal{
+  width:500px ;
+}
+
+.modal-content{
+   height: 357px;
+   justify-content: center;
+}
+.Enter-Your-Username{
+  color: rgba(49, 45, 45, 0.904);
+  text-align: center;
+}
+
+button[type="submit"] {
+  padding: 8px 16px;
+  margin-top: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-button {
+  padding: 8px 16px;
+  margin-top: 10px;
+  background-color: #DC3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+}
+.username-input{
+  margin-top: 30px;
+  /* margin-bottom :100px; */
+}

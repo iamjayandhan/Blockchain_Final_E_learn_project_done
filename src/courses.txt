@@ -41,11 +41,11 @@
     },
     {
       id: 6,
-      imageSrc: 'https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200717144410/Learn-C-Programming-for-Beginners-A-20-Day-Curriculum.png',
+      imageSrc: 'https://i.ytimg.com/vi/CPjZKsUYSXg/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC8bUCvB4FqHK8IzEp-yxOgGoDa1Q',
       title: 'C',
       text: 'Learn C Programming  your skills as a coder of  nation that is  and so on online today. Choose from a wide range of C Programming courses offered from top universities and industry leaders.',
       price: 45,
-      videoUrl: 'https://www.youtube.com/embed/hXSFdwIOfnE',
+      videoUrl: 'https://youtu.be/Bz4MxDeEM6k',
     },
     {
       id: 7,

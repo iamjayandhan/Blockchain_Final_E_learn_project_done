@@ -129,6 +129,4 @@ contract Contract {
         return course;
     }
 
-
-//nm
 }

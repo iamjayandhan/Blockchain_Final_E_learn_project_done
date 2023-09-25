@@ -44,7 +44,7 @@ const Navbar = ({ contract, account }) => {
         setSigninButton('Admin LoggedIn');
         setUser('admin');
       } else if (_userName) {
-        setSigninButton('LoggedIn');
+        setSigninButton('Logged In');
         setUser(_userName);
       }
     } catch (error) {
@@ -62,7 +62,7 @@ const Navbar = ({ contract, account }) => {
   return (
     <nav className={`pt-navbar ${isNavActive ? '-visible' : ''}`}>
       <div className="pt-navbar-logo">
-      <a href="https://www.freepnglogos.com/pics/graduation-cap" title="Image from freepnglogos.com"><img src="https://www.freepnglogos.com/uploads/graduation-cap-png/graduation-cap-variant-education-icons-27.png" width="43px" alt="graduation cap variant education icons" /> De-Learn </a>      
+      <a><img src="https://www.freepnglogos.com/uploads/graduation-cap-png/graduation-cap-variant-education-icons-27.png" width="43px" /> De-Learn </a>      
       </div>
       <div className={`pt-navbar-navs ${isNavActive ? '-active' : ''}`}>
         <div className="pt-navbar-nav">
@@ -88,7 +88,7 @@ const Navbar = ({ contract, account }) => {
       </div>
       <div className="pt-navbar-actions">
         <button onClick={handleSignInClick}>{signinButton}</button>
-        <button>Hello, {user}</button>  
+        <button> {user}</button>  
       </div>
       <div className="pt-navbar-toggle" onClick={handleNavToggle}>
       </div>

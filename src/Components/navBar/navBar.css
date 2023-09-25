@@ -1,6 +1,10 @@
 
 body{
-    background-color: #d6cfdb;
+  background-image: url(https://i.gifer.com/PwSB.gif);
+  background-repeat: no-repeat;
+  background-size: cover; /* Adjust as per your requirements */
+  background-attachment: fixed;
+  margin-top: 30px;
 }
 .pt-navbar {
     position: fixed;
@@ -8,7 +12,7 @@ body{
     left: 0;
     width: 100%;
     padding: 25px 40px;
-    background-color: #d6cfdb;
+    background-color: rgb(39, 69, 93);
     z-index: 1000;
     display: flex;
     justify-content: space-between;
@@ -37,7 +41,7 @@ body{
     display: flex;
     background-color: #F8F6F4;
     width: 340px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 20px;
     align-items: center;
     margin-right: 40px;
@@ -48,7 +52,8 @@ body{
     margin-left: 20px;
     cursor: pointer;
     background-color: #F8F6F4;
-    justify-content:space-evenly;
+    justify-content:center;
+    /* transition: 0.5s; */
   }
   
   .pt-navbar-nav a {
@@ -62,6 +67,7 @@ body{
     padding: 6px;
     border-radius: 10px;
     font-size: 20px;
+    transition: 0.5s;
   }
   
   .pt-navbar-actions {
