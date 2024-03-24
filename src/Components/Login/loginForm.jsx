@@ -58,31 +58,37 @@ const LoginForm = ({ contract,account,onCloseForm}) => {
         }
       }
       
-      
+     
     } catch (error) {
       console.error(error);
     }
     setUserName("");
     // console.log("Admin",isAdmin);
-    onCloseForm()
-   
-
+    
+    closeForm(); 
+  }
+  const closeForm =() =>{
+    onCloseForm();
   };
    console.log("outfun:",isAdmin);
 
   return (
     <>
-    <div className="modal">
-      <div className="modal-content">
-        <h2>Enter Your Username</h2>
+    <div className="modal glass">
+      <div className="modal-content glass">
+        <h2 className = "Enter-Your-Username">Enter Your Username</h2>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={userName}
             onChange={handleUsernameChange}
             placeholder="Username"
+            className = "username-input glass"
           />
-          <button type="submit">Submit</button>
+          <div className = "form-buttons">
+          <button type="submit" className = "submit-button glass ">Submit</button>
+          <button className="close-button glass" onClick={closeForm}>Close</button>
+          </div>
         </form>
       </div>
 
@@ -94,5 +100,3 @@ const LoginForm = ({ contract,account,onCloseForm}) => {
 };
 
 export default LoginForm;
-
-//        { isAdmin ? <CoursesNadmin/>:<h1>Nothing</h1>  }

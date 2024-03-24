@@ -6,11 +6,11 @@ import './carousel.css';
 const CarouselComponent = () => {
   const slides = [
     {
-      image: 'https://img.freepik.com/free-vector/learn-from-home-banner-with-education-icons_1361-2406.jpg?w=2000',
+      image: 'https://img.freepik.com/free-vector/digital-online-education-concept-blank-space-laptop_255625-422.jpg?w=1060&t=st=1689868245~exp=1689868845~hmac=b86f980abcd76940946a10a64eb6433f0c7c467481f8a465ed4c01c991fbc628',
       link: 'https://www.example.com/page1',
     },
     {
-      image: 'https://cdn5.vectorstock.com/i/1000x1000/21/04/e-learning-landing-page-concept-vector-25962104.jpg',
+      image: 'https://www.forbes.com/advisor/wp-content/uploads/2021/03/ethereum-1.jpeg',
       link: 'https://www.example.com/page2',
     },
     {
